@@ -19,8 +19,10 @@
 package org.apache.spark.examples
 
 import com.splicemachine.derby.impl.SpliceSpark
+import com.splicemachine.spark.splicemachine.SplicemachineContext
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.types.{StructType, StringType, StructField, IntegerType}
 
 /**
   * Usage: BroadcastTest [partitions] [numElem] [blockSize]
@@ -33,8 +35,10 @@ object SpliceDriver {
     conf.set("spark.kryo.registrator", "com.splicemachine.derby.impl.SpliceSparkKryoRegistrator")
     val spark = SparkSession.builder().appName("Reader").config(conf).getOrCreate()
     SpliceSpark.setContext(spark.sparkContext)
-    val dbUrl = "jdbc:splice://stl-colo-srv057:1527/splicedb;user=splice;password=admin"
+    val dbUrl = "jdbc:splice://stl-colo-srv136:1527/splicedb;user=splice;password=admin"
     val splicemachineContext = new SplicemachineContext(dbUrl)
-    splicemachineContext.df("SELECT * FROM SPLICE.T").show()
+    val lineItemStruct = splicemachineContext.getSchema("TPCH_JL.LINEITEM")
+    val lineitemDF = spark.sqlContext.read.schema(lineItemStruct).csv("/user/hbase/line_item/");
+    splicemachineContext.insert(lineitemDF,"TPCH_JL.LINEITEM")
   }
 }
