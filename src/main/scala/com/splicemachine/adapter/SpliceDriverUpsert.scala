@@ -27,7 +27,7 @@ import org.apache.spark.sql.types.{StructType, StringType, StructField, IntegerT
 /**
   * Usage: BroadcastTest [partitions] [numElem] [blockSize]
   */
-object SpliceDriver {
+object SpliceDriverUpsert {
 
   def main(args: Array[String]) {
     val conf = new SparkConf()
@@ -43,7 +43,7 @@ object SpliceDriver {
       .schema(lineItemStruct)
       .option("header", "false")
       .option("delimiter", "|")
-      .csv("/user/hbase/line_item100/");
+      .csv("/user/hbase/line_item_load/");
     splicemachineContext.upsert(lineitemDF,"TPCH_JL.LINEITEM")
   }
 }
