@@ -42,7 +42,7 @@
 
     <profiles>
         <profile>
-            <id>cdh5.8.3</id>
+            <id>cdh5.12.2</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
                 <property>
@@ -52,12 +52,12 @@
             </activation>
             <properties>
                 <scala.version>2.11.6</scala.version>
-                <envClassifier>cdh5.13.2</envClassifier>
+                <envClassifier>cdh5.12.2</envClassifier>
                 <splice.version>2.5.0.1819-SNAPSHOT</splice.version>
-                <hadoop.version>2.6.0-cdh5.13.2</hadoop.version>
-                <hbase.version>1.2.0-cdh5.13.2</hbase.version>
-                <hive.version>1.1.0-cdh5.13.2</hive.version>
-                <zookeeper.version>3.4.5-cdh5.13.2</zookeeper.version>
+                <hadoop.version>2.6.0-cdh5.12.2</hadoop.version>
+                <hbase.version>1.2.0-cdh5.12.2</hbase.version>
+                <hive.version>1.1.0-cdh5.12.2</hive.version>
+                <zookeeper.version>3.4.5-cdh5.12.2</zookeeper.version>
                 <spark.version>2.2.0.cloudera2</spark.version>
             </properties>
         </profile>
