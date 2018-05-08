@@ -16,7 +16,7 @@
  */
 
 // scalastyle:off println
-package org.apache.spark.examples
+package com.splicemachine.adapter
 
 import com.splicemachine.derby.impl.SpliceSpark
 import com.splicemachine.spark.splicemachine.SplicemachineContext
