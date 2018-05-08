@@ -39,6 +39,7 @@ object SpliceDriver {
     val splicemachineContext = new SplicemachineContext(dbUrl)
     val lineItemStruct = splicemachineContext.getSchema("TPCH_JL.LINEITEM")
     val lineitemDF = spark.sqlContext.read.schema(lineItemStruct).csv("/user/hbase/line_item/");
+    lineitemDF.show(100)
     splicemachineContext.insert(lineitemDF,"TPCH_JL.LINEITEM")
   }
 }
