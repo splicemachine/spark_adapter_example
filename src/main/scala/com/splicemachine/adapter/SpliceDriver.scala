@@ -43,7 +43,7 @@ object SpliceDriver {
       .schema(lineItemStruct)
       .option("header", "false")
       .option("delimiter", "|")
-      .csv("/user/hbase/line_item/");
+      .csv("/user/hbase/line_item100/");
     splicemachineContext.upsert(lineitemDF,"TPCH_JL.LINEITEM")
   }
 }
