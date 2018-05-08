@@ -44,8 +44,6 @@ object SpliceDriver {
       .option("header", "false")
       .option("delimiter", "|")
       .csv("/user/hbase/line_item/");
-    lineitemDF.show(100)
-    System.out.println("counting" + lineitemDF.count())
-    splicemachineContext.insert(lineitemDF,"TPCH_JL.LINEITEM")
+    splicemachineContext.upsert(lineitemDF,"TPCH_JL.LINEITEM")
   }
 }
