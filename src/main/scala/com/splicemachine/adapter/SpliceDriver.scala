@@ -38,7 +38,12 @@ object SpliceDriver {
     val dbUrl = "jdbc:splice://stl-colo-srv136:1527/splicedb;user=splice;password=admin"
     val splicemachineContext = new SplicemachineContext(dbUrl)
     val lineItemStruct = splicemachineContext.getSchema("TPCH_JL.LINEITEM")
-    val lineitemDF = spark.sqlContext.read.schema(lineItemStruct).csv("/user/hbase/line_item/");
+    val lineitemDF = spark.sqlContext
+      .read
+      .schema(lineItemStruct)
+      .option("header", "false")
+      .option("delimiter", "|")
+      .csv("/user/hbase/line_item/");
     lineitemDF.show(100)
     System.out.println("counting" + lineitemDF.count())
     splicemachineContext.insert(lineitemDF,"TPCH_JL.LINEITEM")
