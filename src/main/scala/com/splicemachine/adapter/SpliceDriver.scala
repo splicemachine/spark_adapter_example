@@ -40,6 +40,7 @@ object SpliceDriver {
     val lineItemStruct = splicemachineContext.getSchema("TPCH_JL.LINEITEM")
     val lineitemDF = spark.sqlContext.read.schema(lineItemStruct).csv("/user/hbase/line_item/");
     lineitemDF.show(100)
+    System.out.println("counting" + lineitemDF.count())
     splicemachineContext.insert(lineitemDF,"TPCH_JL.LINEITEM")
   }
 }
