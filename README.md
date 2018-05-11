@@ -25,4 +25,6 @@ CREATE TABLE TPCH_JL.LINEITEM (
    PRIMARY KEY(L_ORDERKEY,L_LINENUMBER)
    )
    
+-- Place line_item files in /user/hbase/line_item100 on hdfs.
+   
 -- Please change the shell script to add the appropriate principal and keytab.   
