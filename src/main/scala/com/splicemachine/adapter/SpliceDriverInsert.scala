@@ -42,8 +42,8 @@ object SpliceDriverInsert {
       .schema(lineItemStruct)
       .option("header", "false")
       .option("delimiter", "|")
-      .csv("/user/hbase/line_item_load/");
-    val foo = lineitemDF.coalesce(lineitemDF.rdd.getNumPartitions-1)
+      .csv("/user/hbase/line_item100");
+    val foo = lineitemDF.repartition(lineitemDF.rdd.getNumPartitions)
     splicemachineContext.insert(foo,"TPCH_JL.LINEITEM")
   }
 }
